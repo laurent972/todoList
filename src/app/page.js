@@ -1,7 +1,12 @@
-import Image from "next/image";
+import { Suspense } from "react";
+import Todos from "./_components/Todos";
+import Loading from "./_components/Loading";
 
 export default function Home() {
-  return (
-    <h1>TOTO</h1>
-  )
-}
+    return (
+        <Suspense fallback={<Loading/>}>
+            <Todos/>
+        </Suspense>
+     
+    )
+  }
