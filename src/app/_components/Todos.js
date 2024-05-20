@@ -17,25 +17,29 @@ const Todos = () =>{
         fetchData()
     },[])
 
-   /* const handlePush =() =>{
+   const handlePush =() =>{
         console.log('toto');
-        todos.push(
+        setTodos(
+            [...todos,{ title: 'Acheter du saucison', Description: ' ',date: '12/02/2023'}]
+           
+        )
+        /*todos.push(
             { 
                 title: 'Acheter du saucison',
                 Description: ' ',
                 date: '12/02/2023'
             }
-        )
+        )*/
        
-    }*/
+    }
     
-    //console.log(todos);
+    console.log(todos);
 
     return(
 
         <>
             <input type="text" id="name" name="name" className={"border"} />
-            <button>
+            <button onClick={()=> handlePush()}>
                 Ajouter
             </button>
            
@@ -45,7 +49,6 @@ const Todos = () =>{
                         {todo.title}
                     </li>
                 ))}
-                
             </ul>
         
         </>
