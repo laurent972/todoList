@@ -1,16 +1,23 @@
 'use client'
-
-import { Suspense } from "react";
+import { useEffect, useState } from "react";
 
 const { default: listesTodos } = require("../api/load.todos")
 
 
-const Todos = async () =>{
+const Todos = () =>{
 
-    let todos = await listesTodos();
-    console.log(todos);
+    let [todos,setTodos] = useState();
 
-    const handlePush =() =>{
+    useEffect(()=>{
+        const fetchData= async () =>{
+            const result = await listesTodos();
+            setTodos(result)
+        };
+
+        fetchData()
+    },[])
+
+   /* const handlePush =() =>{
         console.log('toto');
         todos.push(
             { 
@@ -19,28 +26,27 @@ const Todos = async () =>{
                 date: '12/02/2023'
             }
         )
-        console.log(todos);
-    }
+       
+    }*/
     
-
+    //console.log(todos);
 
     return(
 
         <>
             <input type="text" id="name" name="name" className={"border"} />
-            <button onClick={handlePush}>
+            <button>
                 Ajouter
             </button>
-            <Suspense fallback={'tododos'}>
+           
             <ul>
-                {todos.map((todo,id) =>(
+                {todos?.map((todo,id) =>(
                     <li key={id}>
                         {todo.title}
                     </li>
                 ))}
                 
             </ul>
-            </Suspense>
         
         </>
     
