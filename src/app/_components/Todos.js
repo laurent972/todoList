@@ -1,12 +1,14 @@
 'use client'
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { UseTasks } from "../_context/Tasks";
+import Link from "next/link";
 
 const { default: listesTodos } = require("../api/load.todos")
 
 
 const Todos = () =>{
 
-    let [todos,setTodos] = useState();
+    let [todos,setTodos] = UseTasks();
     
     useEffect(()=>{
         const fetchData= async () =>{
@@ -21,10 +23,10 @@ const Todos = () =>{
       
         let theDate = new Date();
     
-            setTodos(
-                [...todos, { title: e.target.name.value, Description: ' ', date: (theDate.getDate())+"/" +(theDate.getMonth())  +"/" +(theDate.getFullYear()) }]
-            )
-        
+        setTodos(
+          [...todos, { title: e.target.task.value, Description: ' ', date: (theDate.getDate())+"/" +(theDate.getMonth())  +"/" +(theDate.getFullYear()) }]
+        )
+        e.target.task.value = ""
     }
     
     console.log(todos);
@@ -46,8 +48,11 @@ const Todos = () =>{
                     </li>
                 ))}
             </ul>
-        
+                
+            <Link className={'bg-blue-500 p-2 mt-5'} href={'/task'}>a task</Link>
         </>
+     
+       
     
     )
 }
