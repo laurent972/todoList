@@ -32,7 +32,6 @@ const Todos = () =>{
     console.log(todos);
 
     return(
-
         <>
             <form onSubmit={handlePush}>
             <input type="text" id="task" name="task" className={"border"}/>
@@ -51,9 +50,6 @@ const Todos = () =>{
                 
             <Link className={'bg-blue-500 p-2 mt-5'} href={'/task'}>a task</Link>
         </>
-     
-       
-    
     )
 }
 
