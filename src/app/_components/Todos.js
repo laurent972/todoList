@@ -45,8 +45,10 @@ const Todos = () =>{
                 {todos?.map((todo,id) =>(
 
                     <li key={id}>
+                        <button onClick={()=> console.log('tto')}>
+                            {todo.todo ? <FaRegCircle /> : <FaRegCheckCircle />}
+                        </button>
                         
-                        {todo.todo ? <FaRegCircle /> : <FaRegCheckCircle />}
                        <Link href={`/task/${id}`}>{todo.title}</Link> 
                         {todo.Description}
                         <span className="italic text-xs	">{todo.date}</span>
