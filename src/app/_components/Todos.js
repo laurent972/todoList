@@ -2,6 +2,9 @@
 import { useContext, useEffect, useState } from "react";
 import { UseTasks } from "../_context/Tasks";
 import Link from "next/link";
+import { FaRegCircle } from "react-icons/fa"
+import { FaRegCheckCircle } from "react-icons/fa";
+
 
 const { default: listesTodos } = require("../api/load.todos")
 
@@ -40,10 +43,13 @@ const Todos = () =>{
 
             <ul>
                 {todos?.map((todo,id) =>(
+
                     <li key={id}>
+                        
+                        {todo.todo ? <FaRegCircle /> : <FaRegCheckCircle />}
                        <Link href={`/task/${id}`}>{todo.title}</Link> 
                         {todo.Description}
-                        {todo.date}
+                        <span className="italic text-xs	">{todo.date}</span>
                     </li>
                 ))}
             </ul>
