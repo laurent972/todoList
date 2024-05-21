@@ -43,7 +43,6 @@ const Todos = () =>{
 
             <ul>
                 {todos?.map((todo,id) =>(
-
                     <li key={id}>
                         <button onClick={()=> console.log('tto')}>
                             {todo.todo ? <FaRegCircle /> : <FaRegCheckCircle />}
