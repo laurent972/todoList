@@ -41,7 +41,7 @@ const Todos = () =>{
             <ul>
                 {todos?.map((todo,id) =>(
                     <li key={id}>
-                        {todo.title}
+                       <Link href={`/task/${id}`}>{todo.title}</Link> 
                         {todo.Description}
                         {todo.date}
                     </li>

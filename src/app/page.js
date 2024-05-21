@@ -2,10 +2,9 @@ import Todos from "./_components/Todos";
 
 
 export default function Home() {
-    return (
+    return (   
        
-            <Todos/>
-       
-     
+       <Todos/>
+
     )
   }
