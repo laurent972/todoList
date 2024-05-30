@@ -14,7 +14,7 @@ const Todos = () =>{
     let [todos,setTodos] = UseTasks();
     
     useEffect(()=>{
-        const fetchData= async () =>{
+        const fetchData = async () =>{
             const result = await listesTodos();
             setTodos(result)
         };
@@ -27,9 +27,13 @@ const Todos = () =>{
         let theDate = new Date();
     
         setTodos(
-          [...todos, { title: e.target.task.value, Description: ' ', date: (theDate.getDate())+"/" +(theDate.getMonth())  +"/" +(theDate.getFullYear()) }]
+          [...todos, { title: e.target.task.value, description: e.target.desc.value, date: (theDate.getDate())+"/" +(theDate.getMonth())  +"/" +(theDate.getFullYear()), todo: true }]
         )
         e.target.task.value = ""
+    }
+
+    const handleStatus = (id) =>{
+        console.log(id);
     }
     
     console.log(todos);
@@ -37,25 +41,24 @@ const Todos = () =>{
     return(
         <>
             <form onSubmit={handlePush}>
-            <input type="text" id="task" name="task" className={"border"}/>
-            <input type="submit" />
+            <input type="text" id="task" name="task" className={"border"}/><br></br>
+            <input type="text" id="desc" name="desc" className={"border"} placeholder='Description' />
+            <input type="submit" className={'bg-blue-500 p-2 mt-5'}/>
             </form>
 
             <ul>
                 {todos?.map((todo,id) =>(
                     <li key={id}>
-                        <button onClick={()=> console.log('tto')}>
+                        <button onClick={() => handleStatus(id)}>
                             {todo.todo ? <FaRegCircle /> : <FaRegCheckCircle />}
                         </button>
-                        
                        <Link href={`/task/${id}`}>{todo.title}</Link> 
+                       <br/>
                         {todo.Description}
                         <span className="italic text-xs	">{todo.date}</span>
                     </li>
                 ))}
             </ul>
-                
-            <Link className={'bg-blue-500 p-2 mt-5'} href={'/task'}>a task</Link>
         </>
     )
 }
