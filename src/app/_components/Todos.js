@@ -13,14 +13,7 @@ const Todos = () =>{
 
     let [todos,setTodos] = UseTasks();
     
-    useEffect(()=>{
-        const fetchData = async () =>{
-            const result = await listesTodos();
-            setTodos(result)
-        };
-        fetchData()
-    },[])
-
+  
    const handlePush =(e) =>{
         e.preventDefault()
       
