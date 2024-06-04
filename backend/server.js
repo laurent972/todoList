@@ -1,10 +1,11 @@
 const express = require ("express");
+const connectDB = require("./config/db");
 const port = 5500;
 
-const mongoose = require('mongoose')
+connectDB();
 
 const app = express();
-mongoose.connect('mongodb+srv://fs:>8,Ry)+GGgMgv!i@todolist.jf5tkn2.mongodb.net/?retryWrites=true&w=majority&appName=todolist');
+
 
 //middleware
 app.use(express.json())
