@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const dotenv = require("dotenv").config();
 
 connectDB().catch(err => {
     console.log(err);
