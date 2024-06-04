@@ -1,10 +1,12 @@
 const express = require ("express");
-const connectDB = require("./config/db");
 const port = 5500;
 
-connectDB();
+const mongoose = require('mongoose');
+const connectDB = require("./config/db");
 
 const app = express();
+
+connectDB();
 
 
 //middleware
