@@ -1,10 +1,8 @@
 const express = require('express');
-const { setTask } = require('../controllers/post.controller');
+const { setTask, getTasks } = require('../controllers/task.controller');
 const router = express.Router();
 
-router.get("/", (req,res) => {
-    res.json({ message: "voici la data"})
-})
+router.get("/", getTasks)
 
 router.post("/",  setTask)
 
