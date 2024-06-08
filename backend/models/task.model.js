@@ -1,17 +1,22 @@
 const mongoose = require("mongoose");
 
 const taskSchema = mongoose.Schema(
-    {
-        
-            title:{
-                type: String, 
-                required: true
-            },
-            description: {
-                type: String, 
-                required: true
-            }
-        
+    { 
+        title:{
+          type: String
+        },
+        description: {
+          type: String
+        },
+        createDate:{
+          type: Date, 
+          default: Date.now, 
+         },
+        updateDate:{
+          type: Date, 
+          default: Date.now, 
+         },
+        todo: Boolean,       
     }
 )
 
