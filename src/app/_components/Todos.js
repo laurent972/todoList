@@ -29,7 +29,14 @@ const Todos = () =>{
         console.log(id);
     }
     
-    console.log(todos);
+    async function afficherFilms() {
+        const reponse = await fetch("http://localhost:5500/tasks/");
+        const films = await reponse.json();
+        console.log(films);
+      }
+      afficherFilms()
+
+    //console.log(todos);
 
     return(
         <>
