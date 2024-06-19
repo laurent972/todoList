@@ -56,7 +56,7 @@ const Todos = () =>{
                  
         handleClick(contextId, todo);
 
-        console.log(tasks);
+        console.log(todo);
 
         if(todo){
             try{
@@ -66,28 +66,32 @@ const Todos = () =>{
                     headers: {
                       "Content-Type": "application/json",
                    },
-                body: JSON.stringify({todo: !todo}),
-                });
+                body: JSON.stringify({todo: false}),
+                
+            });
+            }catch(err){
+                console.log(err);
+             }finally{
+               
+             }
+        }else if(!todo){
+            try{
+                let response;
+                response = await fetch(`http://localhost:5500/tasks/task-undone/${todoId}`, {
+                    method: "PATCH",
+                    headers: {
+                      "Content-Type": "application/json",
+                   },
+                body: JSON.stringify({todo: true}),
+            });
             }catch(err){
                 console.log(err);
              }finally{
     
              }
         }
-        try{
-            let response;
-            response = await fetch(`http://localhost:5500/tasks/task-undone/${todoId}`, {
-                method: "PATCH",
-                headers: {
-                  "Content-Type": "application/json",
-               },
-                body: JSON.stringify({todo: !todo}),
-            });
-        }catch(err){
-            console.log(err);
-         }finally{
-
-         }
+    
+       
 
     }
 
