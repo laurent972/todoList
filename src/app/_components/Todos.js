@@ -11,25 +11,25 @@ import { FaRegCheckCircle } from "react-icons/fa";
 
 const Todos = () =>{
 
-    let [tasks,setTasks] = UseTasks();
-    const [form, setForm] = useState({
-        title:'',
-        description:'',
-        createDate:'',
-        todo:''
-    })
-    
+    let [tasks,setTasks,updateTask] = UseTasks();
+   
+    const handleClick = (index,todo) => {
+        console.log(todo);
+        const updatedTask = { ...tasks[index], todo: !todo };
+        updateTask(index, updatedTask);
+    };
   
    const handlePush = async (e) =>{
         e.preventDefault()
       
         let theDate = new Date();
 
-        const task = { title: e.target.task.value, 
-                        description: e.target.desc.value,
-                        createDate: (theDate.getDate())+"/" +(theDate.getMonth())  +"/" +(theDate.getFullYear()),
-                         todo: true 
-                        }
+        const task = { 
+            title: e.target.task.value, 
+            description: e.target.desc.value,
+            createDate: (theDate.getDate())+"/" +(theDate.getMonth())  +"/" +(theDate.getFullYear()),
+            todo: true 
+        }
     
         setTasks(
           [...tasks, { title: e.target.task.value, description: e.target.desc.value, createDate: (theDate.getDate())+"/" +(theDate.getMonth())  +"/" +(theDate.getFullYear()), todo: true }]
@@ -51,18 +51,38 @@ const Todos = () =>{
         }
     }
 
-    const handleStatus = async (e,id) => {
+    const handleStatus = async (e, todoId, contextId, todo) => {
         e.preventDefault();
-      
+                 
+        handleClick(contextId, todo);
+
+        console.log(tasks);
+
+        if(todo){
+            try{
+                let response;
+                response = await fetch(`http://localhost:5500/tasks/task-done/${todoId}`, {
+                    method: "PATCH",
+                    headers: {
+                      "Content-Type": "application/json",
+                   },
+                body: JSON.stringify({todo: !todo}),
+                });
+            }catch(err){
+                console.log(err);
+             }finally{
+    
+             }
+        }
         try{
             let response;
-            response = await fetch(`http://localhost:5500/tasks/task-done/${id}`, {
+            response = await fetch(`http://localhost:5500/tasks/task-undone/${todoId}`, {
                 method: "PATCH",
                 headers: {
                   "Content-Type": "application/json",
                },
-            body: JSON.stringify({todo: true}),
-        });
+                body: JSON.stringify({todo: !todo}),
+            });
         }catch(err){
             console.log(err);
          }finally{
@@ -71,8 +91,7 @@ const Todos = () =>{
 
     }
 
-   
-    //console.log(todos);
+
 
     return(
         <>
@@ -85,7 +104,7 @@ const Todos = () =>{
             <ul>
                 {tasks?.map((todo,id) =>(
                     <li key={id}>
-                        <button onClick={(e) => handleStatus(e,todo._id)}>
+                        <button onClick={(e) => handleStatus(e, todo._id, id, todo.todo )}>
                             {todo.todo ? <FaRegCircle /> : <FaRegCheckCircle />}
                         </button>
                        <Link href={`/task/${id}`}>{todo.title}</Link> 

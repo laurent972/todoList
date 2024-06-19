@@ -8,6 +8,12 @@ const { default: listesTodos } = require("../api/load.todos")
 export const TasksProvider = ({ children }) => {
     let [list, setList] = useState([]);
 
+    const updateTask = (index, updatedTask) => {
+        const updatedList = [...list];
+        updatedList[index] = updatedTask;
+        setList(updatedList);
+      };
+
     useEffect(()=>{
         const fetchData = async () =>{
             const result = await listesTodos();
@@ -17,7 +23,7 @@ export const TasksProvider = ({ children }) => {
     },[])
 
     return (
-        <TasksContext.Provider value={[list, setList]}>{ children }</TasksContext.Provider>
+        <TasksContext.Provider value={[list, setList, updateTask]}>{ children }</TasksContext.Provider>
     )
 }
 

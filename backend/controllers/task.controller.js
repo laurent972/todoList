@@ -59,7 +59,7 @@ module.exports.toggleFalseTask = async (req, res) => {
   try{
    await taskModel.findByIdAndUpdate(
       req.params.id,
-      {$set : {todo : false}},
+      {$set : {todo : todo}},
       {new : true}
     )
     res.status(200).json(" Tâche accomplie"   );  
