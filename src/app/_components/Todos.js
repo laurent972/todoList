@@ -13,7 +13,7 @@ import { FaRegTrashCan } from "react-icons/fa6";
 
 const Todos = () =>{
 
-    let [tasks,setTasks,updateTask] = UseTasks();
+    let [tasks,setTasks,updateTask, deleteTask] = UseTasks();
    
     const handleClick = (index,todo) => {
         console.log(todo);
@@ -92,10 +92,25 @@ const Todos = () =>{
     
              }
         }
-    
-       
-
     }
+
+    const handleDelete = async (todoId) =>{
+        console.log(todoId);
+        deleteTask(todoId)
+        try{
+            let response;
+            response = await fetch(`http://localhost:5500/tasks/${todoId}`,{
+            method: 'DELETE',
+             headers: {
+               "Content-Type": "application/json",
+            }
+         })
+         }catch(err){
+           console.log(err);
+        }
+    }
+
+
 
 
 
@@ -119,7 +134,7 @@ const Todos = () =>{
                         <span className="italic text-xs	">{todo.createDate}</span>
                         
 
-                        <button onClick={(e) => handleStatus(e, todo._id, id, todo.todo )}>
+                        <button onClick={(e) => handleDelete(todo._id)}>
                              <FaRegTrashCan /> 
                         </button>
 

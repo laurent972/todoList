@@ -14,6 +14,10 @@ export const TasksProvider = ({ children }) => {
         setList(updatedList);
       };
 
+    const deleteTask = (index) => {
+        setList(list.filter(task=>task._id !== index))
+    }  
+
     useEffect(()=>{
         const fetchData = async () =>{
             const result = await listesTodos();
@@ -23,7 +27,7 @@ export const TasksProvider = ({ children }) => {
     },[])
 
     return (
-        <TasksContext.Provider value={[list, setList, updateTask]}>{ children }</TasksContext.Provider>
+        <TasksContext.Provider value={[list, setList, updateTask, deleteTask]}>{ children }</TasksContext.Provider>
     )
 }
 
