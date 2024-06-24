@@ -4,6 +4,8 @@ import { UseTasks } from "../_context/Tasks";
 import Link from "next/link";
 import { FaRegCircle } from "react-icons/fa"
 import { FaRegCheckCircle } from "react-icons/fa";
+import { FaRegTrashCan } from "react-icons/fa6";
+
 
 
 
@@ -115,6 +117,12 @@ const Todos = () =>{
                        <br/>
                         {todo.Description}
                         <span className="italic text-xs	">{todo.createDate}</span>
+                        
+
+                        <button onClick={(e) => handleStatus(e, todo._id, id, todo.todo )}>
+                             <FaRegTrashCan /> 
+                        </button>
+
                     </li>
                 ))}
             </ul>
