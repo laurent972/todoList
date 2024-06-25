@@ -8,7 +8,7 @@ router.post("/",  setTask)
 
 router.put("/:id", editTask)
 
-router.delete("/:_id", deleteTask)
+router.delete("/:id", deleteTask)
 
 router.patch("/task-done/:id", toggleFalseTask)
 

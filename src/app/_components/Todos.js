@@ -95,7 +95,7 @@ const Todos = () =>{
     }
 
     const handleDelete = async (todoId) =>{
-        console.log(todoId);
+        //console.log(todoId);
         deleteTask(todoId)
         try{
             let response;
