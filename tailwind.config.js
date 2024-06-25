@@ -12,7 +12,15 @@ module.exports = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      fontFamily: {
+        'bebas-neue': ['"Bebas Neue"'],
+      },
+      colors:{
+          primary: "#C36F09",
+          secondary:"EEBA0B",
+          tertiary:"3A4454"
+      }
     },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
 };

@@ -111,37 +111,40 @@ const Todos = () =>{
     }
 
 
+    return(    
+    <>
+          <div className="hero bg-base-200 min-h-screen">
+            <div class="hero-content text-center">
+                <div class="max-w-md">
+                    <form onSubmit={handlePush}>
+                        <input type="text" id="task" name="task" className={"border"}/><br></br>
+                        <input type="text" id="desc" name="desc" className={"border"} placeholder='Description' />
+                        <input type="submit" className={'bg-blue-500 p-2 mt-5'}/>
+                    </form>
 
+                    <ul className="space-y-4 text-left text-gray-500 dark:text-gray-400">
+                        {tasks?.map((todo,id) =>(
+                            <li key={id} className="flex items-center space-x-3 rtl:space-x-reverse">
+                                <button onClick={(e) => handleStatus(e, todo._id, id, todo.todo )}>
+                                    {todo.todo ? <FaRegCircle /> : <FaRegCheckCircle />}
+                                </button>
+                            <Link href={`/task/${id}`}>{todo.title}</Link> 
+                            <br/>
+                                {todo.Description}
+                                <span className="italic text-xs	">{todo.createDate}</span>
+                                
 
+                                <button className="btn  btn-xs btn-error text-white" onClick={(e) => handleDelete(todo._id)}>
+                                    <FaRegTrashCan /> 
+                                </button>
 
-    return(
-        <>
-            <form onSubmit={handlePush}>
-            <input type="text" id="task" name="task" className={"border"}/><br></br>
-            <input type="text" id="desc" name="desc" className={"border"} placeholder='Description' />
-            <input type="submit" className={'bg-blue-500 p-2 mt-5'}/>
-            </form>
-
-            <ul>
-                {tasks?.map((todo,id) =>(
-                    <li key={id}>
-                        <button onClick={(e) => handleStatus(e, todo._id, id, todo.todo )}>
-                            {todo.todo ? <FaRegCircle /> : <FaRegCheckCircle />}
-                        </button>
-                       <Link href={`/task/${id}`}>{todo.title}</Link> 
-                       <br/>
-                        {todo.Description}
-                        <span className="italic text-xs	">{todo.createDate}</span>
-                        
-
-                        <button onClick={(e) => handleDelete(todo._id)}>
-                             <FaRegTrashCan /> 
-                        </button>
-
-                    </li>
-                ))}
-            </ul>
-        </>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
+          </div>
+    </>
     )
 }
 
