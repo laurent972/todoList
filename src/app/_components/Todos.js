@@ -115,22 +115,24 @@ const Todos = () =>{
     <>
           <div className="hero bg-base-200 min-h-screen">
             <div class="hero-content text-center">
-                <div class="max-w-md">
+                <div class="max-w-md bg-white p-8 shadow-2xl rounded-lg">
                     <form onSubmit={handlePush}>
-                        <input type="text" id="task" name="task" className={"border"}/><br></br>
-                        <input type="text" id="desc" name="desc" className={"border"} placeholder='Description' />
+                        <input type="text" id="task" name="task" className={"border input input-bordered w-full max-w-xs mb-6"} placeholder='Titre'/>
+                        <input type="text" id="desc" name="desc" className={"border input input-bordered w-full max-w-xs"} placeholder='Description' />
                         <input type="submit" className={'bg-blue-500 p-2 mt-5'}/>
                     </form>
 
-                    <ul className="space-y-4 text-left text-gray-500 dark:text-gray-400">
+                    <ul className="space-y-4 text-left text-gray-700 dark:text-gray-400 mt-6">
                         {tasks?.map((todo,id) =>(
                             <li key={id} className="flex items-center space-x-3 rtl:space-x-reverse">
-                                <button onClick={(e) => handleStatus(e, todo._id, id, todo.todo )}>
+                                <button className='text-xl' onClick={(e) => handleStatus(e, todo._id, id, todo.todo )}>
                                     {todo.todo ? <FaRegCircle /> : <FaRegCheckCircle />}
                                 </button>
-                            <Link href={`/task/${id}`}>{todo.title}</Link> 
+                            <Link href={`/task/${id}`} className="text-xl font-bold">
+                                {todo.title}
+                            </Link> 
                             <br/>
-                                {todo.Description}
+                                {todo.description}
                                 <span className="italic text-xs	">{todo.createDate}</span>
                                 
 
