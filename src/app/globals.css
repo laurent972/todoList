@@ -27,3 +27,8 @@
     text-wrap: balance;
   }
 }
+
+
+.hero{
+  display: block;
+}
