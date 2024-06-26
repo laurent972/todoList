@@ -32,3 +32,6 @@
 .hero{
   display: block;
 }
+.hero-content{
+  max-width: 100%;
+}
