@@ -1,0 +1,18 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "/backend/server.js",
+        "use": "@vercel/node"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "/"
+      }
+    ],
+    "env": {
+      "MONGO_URI": "mongodb+srv://laurent:RdUHrVjPWI203GIp@todolist.5vwp3ec.mongodb.net/todo?retryWrites=true&w=majority&appName=todolist"
+    }
+  }
