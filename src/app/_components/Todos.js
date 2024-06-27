@@ -116,9 +116,9 @@ const Todos = () =>{
     return(    
     <>
           <div className="hero bg-base-200 min-h-screen">
-            <div class="hero-content text-center">
+            <div className="hero-content text-center">
                 
-                <div class="max-w-md bg-white p-8 shadow-2xl rounded-lg">
+                <div className="max-w-md bg-white p-8 shadow-2xl rounded-lg">
                     <h1 className="mb-5 uppercase font-bold">Ajouter une tâche</h1>
                     <form onSubmit={handlePush}>
                         <input type="text" id="task" name="task" className={"border input input-bordered w-full max-w-xs mb-6"} placeholder='Titre'/>
@@ -127,8 +127,8 @@ const Todos = () =>{
                     </form>
 
                     <ul className="space-y-4 text-left text-gray-700 dark:text-gray-400 mt-6">
-                        {tasks?.map((todo,id) =>(
-                            <li key={id} className="border-b border-b-gray-300 py-3">
+                        {tasks?.map((todo, id) =>(
+                            <li key={todo._id} className="border-b border-b-gray-300 py-3">
                                 <div className="flex items-center">
                                     <button className='text-xl' onClick={(e) => handleStatus(e, todo._id, id, todo.todo )}>
                                         {todo.todo ? <FaRegCircle /> : <p className="checked"><FcOk /></p>}

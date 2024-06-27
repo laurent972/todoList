@@ -14,7 +14,7 @@ const singlePage = () =>{
     return(
         <>
         {toto.map((to,id) => (
-            id == params.id && <h1>{to.title}</h1>
+            id == params.id && <h1 key={id}>{to.title}</h1>
         ))}
         </>  
     )
