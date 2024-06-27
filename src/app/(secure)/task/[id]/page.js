@@ -3,7 +3,7 @@ import { UseTasks } from "@/app/_context/Tasks";
 import { useParams } from "next/navigation";
 
 
-const singlePage = () =>{
+const SinglePage = () =>{
 
     const params = useParams()
 
