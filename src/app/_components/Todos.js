@@ -123,7 +123,7 @@ const Todos = () =>{
                     <form onSubmit={handlePush}>
                         <input type="text" id="task" name="task" className={"border input input-bordered w-full max-w-xs mb-6"} placeholder='Titre'/>
                         <input type="text" id="desc" name="desc" className={"border input input-bordered w-full max-w-xs"} placeholder='Description' />
-                        <input type="submit" className={'bg-blue-500 hover:bg-blue-800 p-2 mt-5 rounded-lg text-white cursor-pointer cursor-progress'}/>
+                        <input type="submit" className={'bg-blue-500 hover:bg-blue-800 p-2 mt-5 rounded-lg text-white cursor-pointer'}/>
                     </form>
 
                     <ul className="space-y-4 text-left text-gray-700 dark:text-gray-400 mt-6">
