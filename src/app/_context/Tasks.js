@@ -1,6 +1,6 @@
 'use client'
 const { createContext, useState, useContext } = require("react");
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 
 const TasksContext = createContext();
 const { default: listesTodos } = require("../api/load.todos")
@@ -18,7 +18,15 @@ export const TasksProvider = ({ children }) => {
         setList(list.filter(task=>task._id !== index))
     }  
 
-    useEffect(()=>{
+   /* useEffect(()=>{
+        const fetchData = async () =>{
+            const result = await listesTodos();
+            setList(result)
+        };
+        fetchData()
+    },[])*/
+
+    useLayoutEffect(()=>{
         const fetchData = async () =>{
             const result = await listesTodos();
             setList(result)
