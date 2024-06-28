@@ -7,7 +7,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="fr">
       <body>
-        <Header />
+      <Header />
         <TasksProvider>
           {children}
         </TasksProvider>

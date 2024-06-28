@@ -120,8 +120,7 @@ const Todos = () =>{
 
     return(    
     <>
-          <div className="hero bg-base-200 min-h-screen">
-            <div className="hero-content text-center">
+          
                 
                 <div className="w-full md:w-[450px] bg-white p-2 md:p-8 shadow-2xl rounded-lg">
                     <h1 className="mb-5 uppercase font-bold">Ajouter une tâche</h1>
@@ -167,8 +166,7 @@ const Todos = () =>{
                             ))}
                     </ul>
                 </div>
-            </div>
-          </div>
+          
     </>
     )
 }
