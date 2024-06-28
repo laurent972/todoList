@@ -115,7 +115,6 @@ const Todos = () =>{
     }
 
 
-    const sortedTasks = tasks?.sort((a, b) => new Date(b.createDate) - new Date(a.createDate));
 
 
 
@@ -133,7 +132,7 @@ const Todos = () =>{
                     </form>
 
                     <ul className="space-y-4 text-left text-gray-700 dark:text-gray-400 mt-6">
-                        {sortedTasks?.map((todo, id) =>(
+                        {tasks?.map((todo, id) =>(
                             <li key={todo._id} className="border-b border-b-gray-300 py-3">
                                 <div className="flex items-center">
                                     <button className='text-xl' onClick={(e) => handleStatus(e, todo._id, id, todo.todo )}>
@@ -165,9 +164,7 @@ const Todos = () =>{
                                     </div>  
                                 </div>
                             </li>
-                            )).sort((a,b)=>{
-                                return new Date(b.createDate) - new Date(a.createDate);
-                            })}
+                            ))}
                     </ul>
                 </div>
             </div>
