@@ -16,6 +16,8 @@ import { FcOk } from "react-icons/fc";
 const Todos = () =>{
 
     let [tasks,setTasks,updateTask, deleteTask] = UseTasks();
+
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
    
     const handleClick = (index,todo) => {
         console.log(todo);
@@ -26,17 +28,17 @@ const Todos = () =>{
    const handlePush = async (e) =>{
         e.preventDefault()
       
-        let theDate = new Date();
+        let theDate = Date.now();
 
         const task = { 
             title: e.target.task.value, 
             description: e.target.desc.value,
-            createDate: (theDate.getDate())+"/" +(theDate.getMonth())  +"/" +(theDate.getFullYear()),
+            createDate: (theDate),
             todo: true 
         }
     
         setTasks(
-          [...tasks, { title: e.target.task.value, description: e.target.desc.value, createDate: (theDate.getDate())+"/" +(theDate.getMonth())  +"/" +(theDate.getFullYear()), todo: true }]
+          [{ title: e.target.task.value, description: e.target.desc.value, createDate: (theDate), todo: true }, ...tasks]
         )
 
         try{
@@ -113,12 +115,16 @@ const Todos = () =>{
     }
 
 
+    const sortedTasks = tasks?.sort((a, b) => new Date(b.createDate) - new Date(a.createDate));
+
+
+
     return(    
     <>
           <div className="hero bg-base-200 min-h-screen">
             <div className="hero-content text-center">
                 
-                <div className="max-w-md bg-white p-8 shadow-2xl rounded-lg">
+                <div className="w-full md:w-[450px] bg-white p-2 md:p-8 shadow-2xl rounded-lg">
                     <h1 className="mb-5 uppercase font-bold">Ajouter une tâche</h1>
                     <form onSubmit={handlePush}>
                         <input type="text" id="task" name="task" className={"border input input-bordered w-full max-w-xs mb-6"} placeholder='Titre'/>
@@ -127,7 +133,7 @@ const Todos = () =>{
                     </form>
 
                     <ul className="space-y-4 text-left text-gray-700 dark:text-gray-400 mt-6">
-                        {tasks?.map((todo, id) =>(
+                        {sortedTasks?.map((todo, id) =>(
                             <li key={todo._id} className="border-b border-b-gray-300 py-3">
                                 <div className="flex items-center">
                                     <button className='text-xl' onClick={(e) => handleStatus(e, todo._id, id, todo.todo )}>
@@ -154,12 +160,14 @@ const Todos = () =>{
                                     <div className="w-60 block text-gray-500">
                                         {todo.description}
                                     </div>
-                                    <div className="w-40 block">
-                                        <span className="italic text-xs	">{todo.createDate.toLocaleString('fr-FR')}</span>
+                                    <div className="w-40 block text-right">
+                                        <span className="italic text-xs	">{ new Date (todo.createDate).toLocaleDateString('fr-FR', options)}</span>
                                     </div>  
                                 </div>
                             </li>
-                            ))}
+                            )).sort((a,b)=>{
+                                return new Date(b.createDate) - new Date(a.createDate);
+                            })}
                     </ul>
                 </div>
             </div>
