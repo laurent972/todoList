@@ -20,4 +20,4 @@ const SinglePage = () =>{
     )
 }
 
-export default singlePage;
+export default SinglePage;
