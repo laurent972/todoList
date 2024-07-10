@@ -18,21 +18,21 @@ export const TasksProvider = ({ children }) => {
         setList(list.filter(task=>task._id !== index))
     }  
 
-   /* useEffect(()=>{
-        const fetchData = async () =>{
-            const result = await listesTodos();
-            setList(result)
-        };
-        fetchData()
-    },[])*/
-
-    useLayoutEffect(()=>{
+   useEffect(()=>{
         const fetchData = async () =>{
             const result = await listesTodos();
             setList(result)
         };
         fetchData()
     },[])
+
+    // useLayoutEffect(()=>{
+    //     const fetchData = async () =>{
+    //         const result = await listesTodos();
+    //         setList(result)
+    //     };
+    //     fetchData()
+    // },[])
 
     return (
         <TasksContext.Provider value={[list, setList, updateTask, deleteTask]}>{ children }</TasksContext.Provider>

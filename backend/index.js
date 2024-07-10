@@ -14,6 +14,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 
 app.use("/tasks", require("./routes/tasks.routes"));
+app.use("/users", require("./routes/users.routes"));
 
 app.listen(port, () => console.log('le serveur a démarré sur ' + port))
 
