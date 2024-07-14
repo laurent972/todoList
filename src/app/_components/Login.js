@@ -35,7 +35,7 @@ const Login = () =>{
             </form>
             <div className="pt-8">
                 <p className="text-md font-bold">Pas encore de compte ?</p>
-                <Link href={'/register'} className="underline text-blue-500"> S'enregistrer</Link>
+                <Link href={"/register"} className="underline text-blue-500"> S&aposenregistrer</Link>
             </div>
             
         </div>            
