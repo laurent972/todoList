@@ -13,6 +13,7 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 
+
 app.use("/tasks", require("./routes/tasks.routes"));
 app.use("/users", require("./routes/users.routes"));
 

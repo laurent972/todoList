@@ -27,20 +27,16 @@ const Todos = () =>{
   
    const handlePush = async (e) =>{
         e.preventDefault()
-      
         let theDate = Date.now();
-
         const task = { 
             title: e.target.task.value, 
             description: e.target.desc.value,
             createDate: (theDate),
             todo: true 
         }
-    
         setTasks(
-          [{ title: e.target.task.value, description: e.target.desc.value, createDate: (theDate), todo: true }, ...tasks]
+          [{ ...task }, ...tasks]
         )
-
         try{
             let response;
             response = await fetch("https://todo-list-72pe.vercel.app/tasks/", {
@@ -58,12 +54,8 @@ const Todos = () =>{
     }
 
     const handleStatus = async (e, todoId, contextId, todo) => {
-        e.preventDefault();
-                 
+        e.preventDefault();           
         handleClick(contextId, todo);
-
-        console.log(todo);
-
         if(todo){
             try{
                 let response;
@@ -73,12 +65,9 @@ const Todos = () =>{
                       "Content-Type": "application/json",
                    },
                 body: JSON.stringify({todo: false}),
-                
             });
             }catch(err){
                 console.log(err);
-             }finally{
-               
              }
         }else if(!todo){
             try{
@@ -92,8 +81,6 @@ const Todos = () =>{
             });
             }catch(err){
                 console.log(err);
-             }finally{
-    
              }
         }
     }
@@ -118,10 +105,8 @@ const Todos = () =>{
 
 
 
-    return(    
-    <>
-          
-                
+return(    
+             <>
                 <div className="w-full md:w-[450px] bg-white p-2 md:p-8 shadow-2xl rounded-lg">
                     <h1 className="mb-5 uppercase font-bold">Ajouter une tâche</h1>
                     <form onSubmit={handlePush}>
@@ -166,9 +151,8 @@ const Todos = () =>{
                             ))}
                     </ul>
                 </div>
-          
-    </>
-    )
+        </>
+        )
 }
 
 export default Todos;
