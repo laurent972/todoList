@@ -26,9 +26,9 @@ module.exports.userInfo =  async (req, res) => {
 
 module.exports.updateUser = async (req, res) => {
     if(!ObjectId.isValid(req.params.id))
-    return res.status(400).send('Id unknown : '+ req.params.id)
+    return res.status(400).send('Uilisateur inconnu')
     try {
-      const user = await UserModel.findByIdAndUpdate({ _id : req.params.id},{$set: req.body},{ new: true, upsert: true, setDefaultsOnInsert: true})
+      const user = await UserModel.findByIdAndUpdate({ _id : req.params.id},{$set: req.body},{ new: true, upsert: true, setDefaultsOnInsert: true}).select('-password')
        
           if (user) {
             console.log('Document found:', user);
