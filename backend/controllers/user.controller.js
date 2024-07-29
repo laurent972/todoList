@@ -1,3 +1,4 @@
+const { FaRegCaretSquareUp } = require('react-icons/fa');
 const UserModel = require('../models/user.model');
 const ObjectId = require('mongoose').Types.ObjectId;
 
@@ -7,21 +8,38 @@ module.exports.getAllUsers = async(req,res) =>{
 }
 
 module.exports.userInfo =  async (req, res) => {
-    console.log(req.params);
-    if(!ObjectId.isValid(req.params.id))
-        return res.status(400).send('Id unknown : '+ req.params.id)
+      if(!ObjectId.isValid(req.params.id))
+      return res.status(400).send('Id unknown : '+ req.params.id)
 
-   
         try {
-          const doc = await UserModel.findById(req.params.id);
-          if (doc) {
-            console.log('Document found:', doc);
-            return res.status(400).send(doc)
+          const user = await UserModel.findById(req.params.id).select('-password');
+          if (user) {
+            console.log('Document found:', user);
+            return res.status(400).send(user);
           } else {
             console.log('Document not found');
           }
         } catch (err) {
           console.error('Error:', err);
         }
+}
+
+module.exports.updateUser = async (req, res) => {
+    if(!ObjectId.isValid(req.params.id))
+    return res.status(400).send('Id unknown : '+ req.params.id)
+    try {
+      const user = await UserModel.findByIdAndUpdate({ _id : req.params.id},{$set: req.body},{ new: true, upsert: true, setDefaultsOnInsert: true})
+       
+          if (user) {
+            console.log('Document found:', user);
+            return res.status(200).send(user);
+          } else {
+            console.log('Document not found');
+          }
     
+    } catch (err) {
+      console.error('Error:', err);
+      if(err) return res.status(500).send(err)
+    }
+
 }
