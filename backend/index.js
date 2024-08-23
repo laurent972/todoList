@@ -4,6 +4,7 @@ const cookieParser = require('cookie-parser')
 var cors = require('cors')
 const port = 5500;
 const dotenv = require("dotenv").config();
+const {checkUser, requireAuth} = require('./middleware/auth.middleware')
 const connectDB = require("./config/db");
 const app = express();
 
@@ -16,6 +17,12 @@ app.use(cookieParser());
 //middleware
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
+
+//jwt
+app.get('*', checkUser);
+app.get('/jwtid', requireAuth, (req,res)=>{
+    res.status(200).send(res.locals.user._id)
+})
 
 
 app.use("/tasks", require("./routes/tasks.routes"));
