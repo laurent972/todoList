@@ -21,9 +21,10 @@ const Login = () =>{
                 },
                 body: JSON.stringify(loginRequest),
               });
-              
-              const data = await response.json()
-              console.log(data);
+              if (response.headers.get('content-type').includes('application/json')) {
+                const data = await response.json()
+              }
+              //console.log(data);
               router.push('/tasks')
 
         }catch(err){
