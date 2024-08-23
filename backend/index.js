@@ -9,8 +9,14 @@ const connectDB = require("./config/db");
 const app = express();
 
 
+const corsOptions = {
+    origin: 'http://localhost:3000', // Change to your frontend's URL
+    credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+  };
+
+
 connectDB();
-app.use(cors())
+app.use(cors(corsOptions))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(cookieParser());

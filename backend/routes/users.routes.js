@@ -1,6 +1,9 @@
 const router = require('express').Router();
+const cookieParser = require('cookie-parser')
 const authController = require('../controllers/auth.controller');
 const userController = require ('../controllers/user.controller');
+
+router.use(cookieParser())
 
 router.post("/register", authController.signUp);
 router.post('/login', authController.signIn);

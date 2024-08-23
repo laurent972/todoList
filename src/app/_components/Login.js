@@ -1,10 +1,46 @@
+'use client'
 import Link from "next/link";
+import { useRouter } from 'next/navigation';
 
 const Login = () =>{
+
+    const router = useRouter();  
+    const handleLogin = async (e) =>{
+        e.preventDefault();
+        const loginRequest = { 
+            email: e.target.email.value, 
+            password: e.target.password.value,
+        }
+        try{
+            let response;
+            response = await fetch("http://localhost:5500/users/login", {
+                method: "POST",
+                credentials: 'include',
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(loginRequest),
+              });
+              
+              const data = await response.json()
+              console.log(data);
+              router.push('/tasks')
+
+        }catch(err){
+            console.log(err);
+            
+        }finally{
+            
+           }
+        
+    }
+
+
+
     return(
         <div className="w-full md:w-[450px] bg-white p-2 md:p-8 shadow-2xl rounded-lg">
             <h1 className="mb-5 uppercase font-bold">Se connecter</h1>
-              <form >
+              <form onSubmit={ handleLogin  }>
                 <label className="input input-bordered flex items-center gap-2 mb-5">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -16,7 +52,7 @@ const Login = () =>{
                         <path
                         d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z" />
                     </svg>
-                    <input type="text" className="grow" placeholder="email" />
+                    <input id="email" type="text" className="grow" placeholder="email" />
                 </label>
                 <label className="input input-bordered flex items-center gap-2">
                     <svg
@@ -29,13 +65,13 @@ const Login = () =>{
                         d="M14 6a4 4 0 0 1-4.899 3.899l-1.955 1.955a.5.5 0 0 1-.353.146H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2.293a.5.5 0 0 1 .146-.353l3.955-3.955A4 4 0 1 1 14 6Zm-4-2a.75.75 0 0 0 0 1.5.5.5 0 0 1 .5.5.75.75 0 0 0 1.5 0 2 2 0 0 0-2-2Z"
                         clipRule="evenodd" />
                     </svg>
-                    <input type="password" className="grow" value="password" />
+                    <input id="password" type="password" className="grow" placeholder="password" />
                 </label>
                     <input type="submit" className={'bg-blue-500 hover:bg-blue-800 p-2 mt-5 rounded-lg text-white cursor-pointer'}/>
             </form>
             <div className="pt-8">
                 <p className="text-md font-bold">Pas encore de compte ?</p>
-                <Link href={"/register"} className="underline text-blue-500"> S&aposenregistrer</Link>
+                <Link href={"/register"} className="underline text-blue-500"> S'enregistrer</Link>
             </div>
             
         </div>            
