@@ -10,7 +10,7 @@ const app = express();
 
 
 const corsOptions = {
-    origin:'https://todo-list-9x4c-fbve8wmil-laurents-projects-5cda7e0d.vercel.app/', // Change to your frontend's URL
+    origin:'https://todo-list-9x4c.vercel.app/', // Change to your frontend's URL
     credentials: true, // Allow credentials (cookies, authorization headers, etc.)
   };
 
