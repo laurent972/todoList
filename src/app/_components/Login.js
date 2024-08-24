@@ -1,12 +1,17 @@
 'use client'
 import Link from "next/link";
 import { useRouter } from 'next/navigation';
+import { useState } from "react";
 
 const Login = () =>{
 
-    const router = useRouter();  
+    const router = useRouter(); 
+    let [errorMessage, setErrorMessage] = useState('');
+
     const handleLogin = async (e) =>{
         e.preventDefault();
+        console.log('toto');
+        
         const loginRequest = { 
             email: e.target.email.value, 
             password: e.target.password.value,
@@ -15,24 +20,25 @@ const Login = () =>{
             let response;
             response = await fetch("https://todo-list-72pe.vercel.app/users/login", {
                 method: "POST",
-                
+                credentials: 'include',
                 headers: {
                   "Content-Type": "application/json",
                 },
                 body: JSON.stringify(loginRequest),
               });
-              if (response.headers.get('content-type').includes('application/json')) {
-                const data = await response.json()
+              
+              const data = await response.json()
+              
+              if(response.status !== 200){
+                setErrorMessage(data.Erreur);
+              }else if(response.status === 200){
+                router.push('/tasks')
               }
-              //console.log(data);
-              router.push('/tasks')
 
         }catch(err){
-            console.log(err);
-            
-        }finally{
-            
-           }
+            console.log('catch:'+ err);
+           
+        }
         
     }
 
@@ -71,6 +77,7 @@ const Login = () =>{
                     <input type="submit" className={'bg-blue-500 hover:bg-blue-800 p-2 mt-5 rounded-lg text-white cursor-pointer'}/>
             </form>
             <div className="pt-8">
+                {errorMessage.length>0 && <p className="text-rose-700">{errorMessage}</p>}
                 <p className="text-md font-bold">Pas encore de compte ?</p>
                 <Link href={"/register"} className="underline text-blue-500"> S&apos;enregistrer</Link>
             </div>

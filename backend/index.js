@@ -9,10 +9,11 @@ const connectDB = require("./config/db");
 const app = express();
 
 
-app.use(cors({
-    origin: 'https://todo-list-9x4c-a9x7c1jvq-laurents-projects-5cda7e0d.vercel.app/', // Remplacez par l'URL de votre application frontend
-    credentials: true, // Autorise les informations d'identification (cookies, etc.)
-  }));
+const corsOptions = {
+    origin: 'http://localhost:3000', // Change to your frontend's URL
+    credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+  };
+
 
 connectDB();
 app.use(cors(corsOptions))

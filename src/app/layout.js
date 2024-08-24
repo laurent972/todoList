@@ -8,13 +8,12 @@ export default function RootLayout({ children }) {
     <html lang="fr">
       <body>
       <Header />
-
         <TasksProvider>
-        <div className="hero bg-base-200 min-h-screen">
-        <div className="hero-content text-center flex-col">
-          {children}
-          </div>
-          </div>
+          <div className="hero bg-base-200 min-h-screen">
+          <div className="hero-content text-center flex-col">
+            {children}
+           </div>
+           </div>
         </TasksProvider>
       </body>
     </html>
