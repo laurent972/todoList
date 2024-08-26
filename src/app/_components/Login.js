@@ -20,7 +20,7 @@ const Login = () =>{
             let response;
             response = await fetch("https://todo-list-72pe.vercel.app/users/login", {
                 method: "POST",
-                credentials: 'include',
+                credentials: 'same-origin',
                 headers: {
                   "Content-Type": "application/json",
                 },

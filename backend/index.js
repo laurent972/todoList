@@ -1,7 +1,7 @@
 const express = require ("express");
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser') 
-var cors = require('cors')
+const cors = require('cors')
 const port = 5500;
 const dotenv = require("dotenv").config();
 const {checkUser, requireAuth} = require('./middleware/auth.middleware')
