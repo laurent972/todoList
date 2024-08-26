@@ -18,11 +18,12 @@ const Login = () =>{
         }
         try{
             let response;
-            response = await fetch("https://todo-list-72pe.vercel.app/users/login", {
+            response = await fetch("http://localhost:5500/users/login", {
                 method: "POST",
-                credentials: 'same-origin',
+                credentials: 'include',
                 headers: {
                   "Content-Type": "application/json",
+                  "Access-Control-Allow-Origin": "*",
                 },
                 body: JSON.stringify(loginRequest),
               });
