@@ -1,8 +1,8 @@
-
+const express = require('express');
 const cookieParser = require('cookie-parser')
 const authController = require('../controllers/auth.controller');
 const userController = require ('../controllers/user.controller');
-const router = require('express').Router();
+const router = express.Router();
 
 router.use(cookieParser())
 
