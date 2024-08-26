@@ -10,7 +10,7 @@ const app = express();
 
 
 const corsOptions = {
-    origin:'*', // Change to your frontend's URL
+    
     credentials: true, // Allow credentials (cookies, authorization headers, etc.)
   };
 
