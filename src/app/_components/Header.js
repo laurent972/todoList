@@ -1,8 +1,41 @@
-import Image from "next/image";
-import Link from "next/link";
-
+'use client'
+import cookie from "js-cookie"
 
 const Header = () => {
+
+    const removeCookie = (key) =>{
+        if(window != 'undefined'){
+            cookie.remove(key,{expires:1});
+        }
+    }
+
+    const logout = async (e) =>{
+        e.preventDefault();
+
+          try{  
+            const response = await fetch('http://localhost:5500/users/logout', {
+                method: 'GET',
+                headers: {
+                  "Content-Type": "application/json",
+                  "Access-Control-Allow-Origin": "*",
+                },
+            });
+             console.log(response);
+                
+            if(response.ok){
+                removeCookie('jwt')
+                
+            }
+
+          }catch(err){
+            console.log(err);
+            
+          }  
+      
+
+    }
+
+
     return(
         <header>
             <div className="navbar bg-base-100">
@@ -10,7 +43,9 @@ const Header = () => {
                     <a className="btn btn-ghost text-xl">TodoList</a>
                 </div>
                 <div className="flex-none gap-2">
-                    <Link href={'http://localhost:5500/users/logout'}>Logout</Link> 
+                    <form onSubmit={logout}>
+                        <button type="submit">Logout</button> 
+                    </form>
                 </div>
                 
             </div>
