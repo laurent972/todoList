@@ -1,7 +1,9 @@
 'use client'
 import cookie from "js-cookie"
+import { useRouter } from 'next/navigation';
 
 const Header = () => {
+    const router = useRouter(); 
 
     const removeCookie = (key) =>{
         if(window != 'undefined'){
@@ -11,28 +13,23 @@ const Header = () => {
 
     const logout = async (e) =>{
         e.preventDefault();
-
           try{  
             const response = await fetch('http://localhost:5500/users/logout', {
-                method: 'GET',
+                method: 'get',
                 headers: {
                   "Content-Type": "application/json",
                   "Access-Control-Allow-Origin": "*",
                 },
+                credentials:"include",
             });
-             console.log(response);
-                
+            console.log(response);    
             if(response.ok){
                 removeCookie('jwt')
-                
+                router.push('/')
             }
-
           }catch(err){
             console.log(err);
-            
           }  
-      
-
     }
 
 

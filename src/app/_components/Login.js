@@ -10,8 +10,7 @@ const Login = () =>{
 
     const handleLogin = async (e) =>{
         e.preventDefault();
-        console.log('toto');
-        
+          
         const loginRequest = { 
             email: e.target.email.value, 
             password: e.target.password.value,
