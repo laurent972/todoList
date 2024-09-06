@@ -31,7 +31,7 @@ const Register = () =>{
         }else{
             try{
                 let response;
-                response = await fetch("http://localhost:5500/users/register", {
+                response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/users/register`, {
                     method: "POST",
                     credentials: 'include',
                     headers: {

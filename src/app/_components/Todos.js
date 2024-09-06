@@ -39,7 +39,7 @@ const Todos = () =>{
         )
         try{
             let response;
-            response = await fetch("https://todo-list-72pe.vercel.app/tasks/", {
+            response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/tasks`, {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",
@@ -59,7 +59,7 @@ const Todos = () =>{
         if(todo){
             try{
                 let response;
-                response = await fetch(`https://todo-list-72pe.vercel.app/tasks/task-done/${todoId}`, {
+                response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/tasks/task-done/${todoId}`, {
                     method: "PATCH",
                     headers: {
                       "Content-Type": "application/json",
@@ -72,7 +72,7 @@ const Todos = () =>{
         }else if(!todo){
             try{
                 let response;
-                response = await fetch(`https://todo-list-72pe.vercel.app/tasks/task-undone/${todoId}`, {
+                response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/tasks/task-undone/${todoId}`, {
                     method: "PATCH",
                     headers: {
                       "Content-Type": "application/json",
@@ -90,7 +90,7 @@ const Todos = () =>{
         deleteTask(todoId)
         try{
             let response;
-            response = await fetch(`https://todo-list-72pe.vercel.app/tasks/${todoId}`,{
+            response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/tasks/${todoId}`,{
             method: 'DELETE',
              headers: {
                "Content-Type": "application/json",

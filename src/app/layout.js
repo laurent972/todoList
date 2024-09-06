@@ -4,7 +4,12 @@ import "./globals.css";
 
 
 export default function RootLayout({ children }) {
+
+  console.log('Server URL:', process.env.SERVER_URL);
+
+
   return (
+    
     <html lang="fr">
       <body>
       <Header />

@@ -17,12 +17,12 @@ const Login = () =>{
         }
         try{
             let response;
-            response = await fetch("http://localhost:5500/users/login", {
+            response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/users/login`, {
                 method: "POST",
                 credentials: 'include',
                 headers: {
                   "Content-Type": "application/json",
-                  "Access-Control-Allow-Origin": "*",
+                //   "Access-Control-Allow-Origin": "*",
                 },
                 body: JSON.stringify(loginRequest),
               });

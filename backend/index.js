@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser') 
 const cors = require('cors')
 const port = 5500;
-const dotenv = require("dotenv").config();
+require("dotenv").config();
 const {checkUser, requireAuth} = require('./middleware/auth.middleware')
 const connectDB = require("./config/db");
 const app = express();
@@ -15,8 +15,9 @@ const app = express();
   };*/
 
   const corsOptions = {
-    origin:'http://localhost:3000', // Change to your frontend's URL
-    credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+    origin:'http://localhost:3000',  // Allow only your frontend's URL
+    credentials: true, // Allow cookies and authorization headers
+    optionsSuccessStatus: 200 // Some legacy browsers choke on 204
   };
 
 
@@ -25,6 +26,8 @@ app.use(cors(corsOptions))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(cookieParser());
+app.options('*', cors(corsOptions)); // Allow preflight requests from any origin
+
 //middleware
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
