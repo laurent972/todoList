@@ -15,9 +15,11 @@ const app = express();
   };*/
 
   const corsOptions = {
-    origin: process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000',  // Allow only your frontend's URL
+    origin: ['https://todo-list-two-beta-78.vercel.app'],  // Allow only your frontend's URL
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true, // Allow cookies and authorization headers
-    optionsSuccessStatus: 200 // Some legacy browsers choke on 204
+    optionsSuccessStatus: 200, // Some legacy browsers choke on 204
+    allowedHeaders: ['Content-Type', 'Authorization']
   };
 
 
