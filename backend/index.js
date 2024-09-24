@@ -19,7 +19,6 @@ const app = express();
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true, // Allow cookies and authorization headers
     optionsSuccessStatus: 200, // Some legacy browsers choke on 204
-    allowedHeaders: ['Content-Type', 'Authorization']
   };
 
 
