@@ -30,9 +30,16 @@ module.exports.signIn = async (req, res) =>{
     const {email, password} = req.body;
     try{
         const user = await UserModel.login(email,password);
-        const token = createToken(user.id);
-        res.cookie('jwt', token, {httpOnly: true, maxAge });
-        res.status(200).json({user: user._id})
+
+        const userId=user.id;
+        const token = jwt.sign({ id: userId }, process.env.TOKEN_SECRET, { expiresIn: '1h' });
+        res.cookie('jwt', token, {
+            httpOnly: true, // Ne peut pas être accessible via JavaScript
+            secure: process.env.NODE_ENV === 'production', // Utiliser HTTPS en production
+            sameSite: 'None', // Permettre l'envoi du cookie dans des contextes inter-origines
+            maxAge: 3600000, // Durée de vie du cookie (ex : 1 heure)
+        });
+        return res.status(200).json({ message: 'Connexion réussie' });
     }catch(err){
         res.status(401).send(err);       
     }
