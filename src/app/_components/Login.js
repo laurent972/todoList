@@ -20,10 +20,10 @@ const Login = () =>{
             response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/users/login`, {
                 method: "POST",
                 credentials: 'include',
-                headers: {
-                  "Content-Type": "application/json",
-                //   "Access-Control-Allow-Origin": "*",
-                },
+                    headers: {
+                      "Content-Type": "application/json",
+                      "Access-Control-Allow-Origin": "*",
+                    },
                 body: JSON.stringify(loginRequest),
               });
               
