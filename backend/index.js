@@ -15,15 +15,19 @@ const app = express();
   };*/
 
   const corsOptions = {
-    origin: ['https://todo-list-two-beta-78.vercel.app'],  // Allow only your frontend's URL
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true, // Allow cookies and authorization headers
-    optionsSuccessStatus: 200, // Some legacy browsers choke on 204
+    origin: ['https://todo-list-two-beta-78.vercel.app', 'http://localhost:3000'], // Autoriser uniquement l'URL de votre frontend
+    methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'], // Méthodes HTTP autorisées
+    credentials: true, // Autoriser l'envoi de cookies et des headers d'autorisation
+    optionsSuccessStatus: 200, // Pour les navigateurs anciens qui bloquent sur 204
   };
 
+// Appliquer CORS à toutes les routes
+app.use(cors(corsOptions));
 
+// Gérer les requêtes preflight (OPTIONS)
+app.options('*', cors(corsOptions));
 connectDB();
-app.use('*', cors(corsOptions))
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(cookieParser());
