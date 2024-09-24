@@ -20,24 +20,27 @@ const Login = () =>{
             response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/users/login`, {
                 method: "POST",
                 credentials: 'include',
-                    headers: {
-                      "Content-Type": "application/json",
-                      "Access-Control-Allow-Origin": "*",
-                    },
+                headers: {
+                    "Content-Type": "application/json",
+                },
                 body: JSON.stringify(loginRequest),
               });
               
-              const data = await response.json()
               
-              if(response.status !== 200){
-                setErrorMessage(data.Erreur);
-              }else if(response.status === 200){
-                router.push('/tasks')
-              }
+        if (!response.ok) {
+            // Si la réponse n'est pas un succès, gérer l'erreur
+            const errorData = await response.json();
+            setErrorMessage(errorData.Erreur || "Une erreur s'est produite");
+            return;
+        }
 
-        }catch(err){
-            console.log('catch:'+ err);
-           
+        // Si tout est OK
+        const data = await response.json();
+        router.push('/tasks'); // Redirection après connexion réussie
+
+        }catch (err) {
+            console.log('Erreur dans le bloc catch :', err);
+            setErrorMessage("Une erreur s'est produite lors de la connexion");
         }
         
     }
