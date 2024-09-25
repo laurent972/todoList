@@ -28,6 +28,7 @@ module.exports.signUp = async (req, res) => {
 
 module.exports.signIn = async (req, res) => {
     const { email, password } = req.body;
+    res.setHeader('Access-Control-Allow-Origin', 'https://todo-list-two-beta-78.vercel.app/')
 
     try {
         // Tenter de connecter l'utilisateur
