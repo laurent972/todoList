@@ -8,38 +8,43 @@ const Login = () =>{
     const router = useRouter(); 
     let [errorMessage, setErrorMessage] = useState('');
 
-    const handleLogin = async (e) =>{
+    const handleLogin = async (e) => {
         e.preventDefault();
-          
-        const loginRequest = { 
-            email: e.target.email.value, 
-            password: e.target.password.value,
+        
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+    
+        // Vérifier que les champs ne sont pas vides
+        if (!email || !password) {
+            setErrorMessage('Veuillez entrer un email et un mot de passe');
+            return;
         }
-        try{
-            let response;
-            response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/users/login`, {
-                method: 'POST',
-                credentials: 'include', // Nécessaire pour les requêtes avec cookies
+    
+        const loginRequest = { email, password };
+    
+        try {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/users/login`, {
+                method: "POST",
+                credentials: 'include',
                 headers: {
-                    'Content-Type': 'application/json',
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*",
                 },
                 body: JSON.stringify(loginRequest),
-              });
-              //console.log(response);
-              const data = await response.json();
-              if(response.status !== 200){
-                setErrorMessage(data.Erreur);
-              }else if(response.status === 200){
-                //console.log(response);
-                router.push('/tasks')
-              }
-
-        }catch(err){
-            console.log('catch:'+ err);
-           
+            });
+    
+            const data = await response.json();
+    
+            if (response.status !== 200) {
+                setErrorMessage(data.error || 'Login échoué');
+            } else {
+                router.push('/tasks');
+            }
+        } catch (err) {
+            console.log('Erreur:', err);
+            setErrorMessage('Erreur de connexion');
         }
-        
-    }
+    };
 
 
 

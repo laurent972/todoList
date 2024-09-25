@@ -37,12 +37,7 @@ module.exports.signIn = async (req, res) => {
         const token = createToken(user._id); // Assurez-vous que `createToken` fonctionne correctement
 
         // Définir le cookie JWT
-        res.cookie('jwt', token, {
-            httpOnly: true,  // Le cookie ne peut pas être accédé par JavaScript
-            secure: process.env.NODE_ENV === 'production', // En production, utiliser `secure: true`
-            sameSite:'None', // `None` pour cross-origin, sinon 'Lax'
-            maxAge: 3600000, // Durée de vie du cookie en millisecondes (1 heure ici)
-        });
+        res.cookie('jwt', token, {httpOnly: true,sameSite: 'None', maxAge });
 
         // Répondre avec succès
         res.status(200).json({ message: 'Login successful', user: user._id });
