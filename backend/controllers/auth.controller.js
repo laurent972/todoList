@@ -28,7 +28,9 @@ module.exports.signUp = async (req, res) => {
 
 module.exports.signIn = async (req, res) => {
     const { email, password } = req.body;
-    res.setHeader('Access-Control-Allow-Origin', 'Access-Control-Allow-headers', 'Accept, Content-type')
+    res.setHeader('Access-Control-Allow-Origin', '*')
+
+    res.setHeader('Access-Control-Allow-headers', 'Accept, Content-type')
 
     try {
         // Tenter de connecter l'utilisateur
