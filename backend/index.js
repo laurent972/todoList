@@ -19,6 +19,7 @@ const app = express();
     methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'], // Méthodes HTTP autorisées
     credentials: true, // Autoriser l'envoi de cookies et des headers d'autorisation
     optionsSuccessStatus: 200, // Pour les navigateurs anciens qui bloquent sur 204
+    
   };
 
 // Appliquer CORS à toutes les routes
