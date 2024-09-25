@@ -15,7 +15,7 @@ const app = express();
   };*/
 
   const corsOptions = {
-    origin: ['http://localhost:3000', process.env.FRONTEND_URL], // Autoriser uniquement l'URL de votre frontend
+    origin: ['http://localhost:3000', process.env.FRONTEND_URL, 'https://todo-list-two-beta-78.vercel.app/'], // Autoriser uniquement l'URL de votre frontend
     methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'], // Méthodes HTTP autorisées
     credentials: true, // Autoriser l'envoi de cookies et des headers d'autorisation
     optionsSuccessStatus: 200, // Pour les navigateurs anciens qui bloquent sur 204
