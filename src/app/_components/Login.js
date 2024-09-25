@@ -18,12 +18,11 @@ const Login = () =>{
         try{
             let response;
             response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/users/login`, {
-                method: "POST",
-                credentials: 'include',
-                    headers: {
-                      "Content-Type": "application/json",
-                      "Access-Control-Allow-Origin": "*",
-                    },
+                method: 'POST',
+                credentials: 'include', // Nécessaire pour les requêtes avec cookies
+                headers: {
+                    'Content-Type': 'application/json',
+                },
                 body: JSON.stringify(loginRequest),
               });
               //console.log(response);

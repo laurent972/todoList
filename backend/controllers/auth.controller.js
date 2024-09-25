@@ -40,7 +40,7 @@ module.exports.signIn = async (req, res) => {
         res.cookie('jwt', token, {
             httpOnly: true,  // Le cookie ne peut pas être accédé par JavaScript
             secure: process.env.NODE_ENV === 'production', // En production, utiliser `secure: true`
-            sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax', // `None` pour cross-origin, sinon 'Lax'
+            sameSite:'None', // `None` pour cross-origin, sinon 'Lax'
             maxAge: 3600000, // Durée de vie du cookie en millisecondes (1 heure ici)
         });
 
