@@ -17,8 +17,6 @@ const Login = () =>{
         }
         try{
             let response;
-          
-            
             response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/users/login`, {
                 method: "POST",
                 credentials: 'include',
@@ -28,13 +26,12 @@ const Login = () =>{
                     },
                 body: JSON.stringify(loginRequest),
               });
-              console.log(response);
-              const data = await response.json()
-              
+              //console.log(response);
+              const data = await response.json();
               if(response.status !== 200){
                 setErrorMessage(data.Erreur);
               }else if(response.status === 200){
-                console.log(response);
+                //console.log(response);
                 router.push('/tasks')
               }
 

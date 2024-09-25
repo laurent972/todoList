@@ -26,22 +26,32 @@ module.exports.signUp = async (req, res) => {
     }
 }
 
-module.exports.signIn = async (req, res) =>{
-    const {email, password} = req.body;
-    try{
-        const user = await UserModel.login(email,password);
-        const token = createToken(user.id);
-        res.cookie('jwt', token, {httpOnly: true, maxAge });
+module.exports.signIn = async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+        // Tenter de connecter l'utilisateur
+        const user = await UserModel.login(email, password);
+
+        // Générer un token JWT pour l'utilisateur
+        const token = createToken(user._id); // Assurez-vous que `createToken` fonctionne correctement
+
+        // Définir le cookie JWT
         res.cookie('jwt', token, {
-            httpOnly: true, // Empêche l'accès via JavaScript
-            secure: true,   // Assurez-vous que c'est défini sur true dans un environnement de production
-            sameSite: 'None', // Nécessaire pour les cookies tiers
-            maxAge: 3600000, // Durée de vie du cookie (1 heure ici)
+            httpOnly: true,  // Le cookie ne peut pas être accédé par JavaScript
+            secure: process.env.NODE_ENV === 'production', // En production, utiliser `secure: true`
+            sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax', // `None` pour cross-origin, sinon 'Lax'
+            maxAge: 3600000, // Durée de vie du cookie en millisecondes (1 heure ici)
         });
-    }catch(err){
-        res.status(401).send(err);       
+
+        // Répondre avec succès
+        res.status(200).json({ message: 'Login successful', user: user._id });
+    } catch (err) {
+        // Si une erreur survient, renvoyer un message d'erreur
+        console.error('Login error:', err);
+        res.status(401).json({ error: 'Invalid credentials' });
     }
-}
+};
 
 module.exports.logout = async (req, res) =>{
     try{
