@@ -48,7 +48,8 @@ module.exports.signIn = async (req, res) => {
         
           res.status(200).json({ message: 'Authentification réussie' });
 
-       
+        // Répondre avec succès
+        res.status(200).json({ message: 'Login successful', user: user._id });
     } catch (err) {
         // Si une erreur survient, renvoyer un message d'erreur
         console.error('Login error:', err);
