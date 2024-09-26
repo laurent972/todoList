@@ -33,13 +33,13 @@ module.exports.signIn = async (req, res) => {
         const user = await UserModel.login(email, password);
 
         // Générer un token JWT pour l'utilisateur
-        const token = jwt.sign({ id: user.id, username: user.username }, process.env.TOKEN_SECRET, { expiresIn: "1h" });
+        const token = createToken(user._id);
 
         // Définir le cookie JWT
         res.cookie('jwt', token, {
             httpOnly: true,        // Le cookie ne sera pas accessible via JavaScript (plus sécurisé)
-            secure: process.env.NODE_ENV === 'production', // Le cookie sera uniquement envoyé via HTTPS en production
-            sameSite: 'None',
+            //secure: process.env.NODE_ENV === 'production', // Le cookie sera uniquement envoyé via HTTPS en production
+            //sameSite: 'None',
             maxAge: 24 * 60 * 60 * 1000 // Durée de vie du cookie (1 jour ici)
         });
 
