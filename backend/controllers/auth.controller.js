@@ -43,6 +43,7 @@ module.exports.signIn = async (req, res) => {
             httpOnly: true,        // Le cookie ne sera pas accessible via JavaScript (plus sécurisé)
             secure: true,          // Le cookie sera uniquement envoyé via HTTPS ** disable en local
             sameSite: 'None', 
+            Partitioned: true,
             maxAge: 24 * 60 * 60 * 1000 // Durée de vie du cookie (1 jour ici)
           });
         
