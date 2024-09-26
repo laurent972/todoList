@@ -15,7 +15,7 @@ const app = express();
   };*/
 
   const corsOptions = {
-    origin: ['http://localhost:3000', process.env.FRONTEND_URL, 'https://todolist-1-ksc6.onrender.com/'], // Autoriser uniquement l'URL de votre frontend
+    origin: ['http://localhost:3000', process.env.FRONTEND_URL, 'https://todolist-1-ksc6.onrender.com'], // Autoriser uniquement l'URL de votre frontend
     methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'], // Méthodes HTTP autorisées
     credentials: true, // Autoriser l'envoi de cookies et des headers d'autorisation
     optionsSuccessStatus: 200, // Pour les navigateurs anciens qui bloquent sur 204
@@ -23,7 +23,7 @@ const app = express();
   };
 
   app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', 'https://todolist-1-ksc6.onrender.com/'); // Autoriser l'origine de votre frontend
+    res.setHeader('Access-Control-Allow-Origin', 'https://todolist-1-ksc6.onrender.com'); // Autoriser l'origine de votre frontend
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS'); // Méthodes autorisées
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // En-têtes autorisés
     res.setHeader('Access-Control-Allow-Credentials', 'true'); // Si vous utilisez des cookies ou des sessions
