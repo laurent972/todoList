@@ -42,7 +42,8 @@ module.exports.signIn = async (req, res) => {
         res.cookie('jwt', token, {
             httpOnly: true,        // Le cookie ne sera pas accessible via JavaScript (plus sécurisé)
             secure: true,          // Le cookie sera uniquement envoyé via HTTPS ** disable en local
-            sameSite: 'None',      // Autorise les requêtes cross-site
+            sameSite: 'None', 
+            partitioned: true,     // Autorise les requêtes cross-site
             maxAge: 24 * 60 * 60 * 1000 // Durée de vie du cookie (1 jour ici)
           });
         
