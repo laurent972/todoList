@@ -21,7 +21,14 @@ const app = express();
     optionsSuccessStatus: 200, // Pour les navigateurs anciens qui bloquent sur 204
     
   };
-
+  
+  app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', 'https://todo-list-two-beta-78.vercel.app'); // Autoriser l'origine de votre frontend
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS'); // Méthodes autorisées
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // En-têtes autorisés
+    res.setHeader('Access-Control-Allow-Credentials', 'true'); // Si vous utilisez des cookies ou des sessions
+    next();
+  });
 // Appliquer CORS à toutes les routes
 app.use(cors(corsOptions));
 
@@ -48,6 +55,11 @@ app.get('/jwtid', requireAuth, (req,res)=>{
 
 app.use("/tasks", require("./routes/tasks.routes"));
 app.use("/users", require("./routes/users.routes"));
+
+app.post('/users/login', (req, res) => {
+  // Code pour gérer la connexion de l'utilisateur
+  res.status(200).json({ message: 'Login successful' });
+});
 
 app.listen(port, () => console.log('le serveur a démarré sur ' + port))
 
