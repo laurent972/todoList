@@ -27,7 +27,7 @@ module.exports.signUp = async (req, res) => {
 }
 
 module.exports.signIn = async (req, res) => {
-    res.setHeader('Access-Control-Allow-Origin', 'origin')
+    
     const { email, password } = req.body;
     try {
         // Tenter de connecter l'utilisateur
