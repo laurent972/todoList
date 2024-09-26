@@ -33,7 +33,7 @@ module.exports.signIn = async (req, res) => {
         const user = await UserModel.login(email, password);
 
         // Générer un token JWT pour l'utilisateur
-        const token = createToken(user._id); // Assurez-vous que `createToken` fonctionne correctement
+        const token = jwt.sign({ id: user.id, username: user.username }, process.env.TOKEN_SECRET, { expiresIn: "1h" });
 
         // Définir le cookie JWT
         res.cookie('jwt', token, {
