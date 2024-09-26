@@ -2,7 +2,7 @@ const taskModel = require('../models/task.model');
 const TaskModel = require('../models/task.model');
 
 module.exports.getTasks = async (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*')
+  res.setHeader('Access-Control-Allow-Origin', process.env.FRONTEND_URL)
   try{
     const task = await TaskModel.find();
     res.status(200).json(task);
