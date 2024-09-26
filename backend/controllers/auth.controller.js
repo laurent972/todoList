@@ -27,7 +27,6 @@ module.exports.signUp = async (req, res) => {
 }
 
 module.exports.signIn = async (req, res) => {
-    
     const { email, password } = req.body;
     try {
         // Tenter de connecter l'utilisateur
@@ -36,21 +35,16 @@ module.exports.signIn = async (req, res) => {
         // Générer un token JWT pour l'utilisateur
         const token = createToken(user._id); // Assurez-vous que `createToken` fonctionne correctement
 
-        // Définir le cookie JWT for local
-        //res.cookie('jwt', token, {httpOnly: true, maxAge });
-
+        // Définir le cookie JWT
         res.cookie('jwt', token, {
             httpOnly: true,        // Le cookie ne sera pas accessible via JavaScript (plus sécurisé)
-            secure: true,          // Le cookie sera uniquement envoyé via HTTPS ** disable en local
-            sameSite: 'None', 
-            Partitioned: true,
+            secure: process.env.NODE_ENV === 'production', // Le cookie sera uniquement envoyé via HTTPS en production
+            sameSite: 'None',
             maxAge: 24 * 60 * 60 * 1000 // Durée de vie du cookie (1 jour ici)
-          });
-        
-          res.status(200).json({ message: 'Authentification réussie' });
+        });
 
         // Répondre avec succès
-        res.status(200).json({ message: 'Login successful', user: user._id });
+        res.status(200).json({ message: 'Authentification réussie', user: user._id });
     } catch (err) {
         // Si une erreur survient, renvoyer un message d'erreur
         console.error('Login error:', err);
