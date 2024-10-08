@@ -40,9 +40,9 @@ const Header = () => {
                     <a className="btn btn-ghost text-xl">TodoList</a>
                 </div>
                 <div className="flex-none gap-2">
-                    <form onSubmit={logout}>
+                    {/* <form onSubmit={logout}>
                         <button type="submit">Logout</button> 
-                    </form>
+                    </form> */}
                 </div>
                 
             </div>
