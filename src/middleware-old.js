@@ -21,8 +21,8 @@ export async function  middleware (request){
             const { payload } = await jwtVerify(cookie, secretUint8Array);
             return NextResponse.next()
         }catch (e){
-            console.log(e);
-            return NextResponse.rewrite(new URL('/', request.url))
+            console.error('JWT verification failed:', e);
+    return NextResponse.redirect(new URL('/', request.url));
         }
      }
     
