@@ -15,7 +15,7 @@ const app = express();
   };*/
 
   const corsOptions = {
-    origin:'http://localhost:3000',  // Allow only your frontend's URL
+    origin:process.env.FRONT_URL,  // Allow only your frontend's URL
     credentials: true, // Allow cookies and authorization headers
     optionsSuccessStatus: 200 // Some legacy browsers choke on 204
   };
