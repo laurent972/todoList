@@ -26,7 +26,7 @@ connectDB();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(cookieParser());
-app.options('*', cors(corsOptions)); // Allow preflight requests from any origin
+app.options(cors(corsOptions)); // Allow preflight requests from any origin
 
 //middleware
 app.use(express.json())
