@@ -9,10 +9,6 @@ import { FcOk } from "react-icons/fc";
 
 
 
-
-
-
-
 const Todos = () =>{
 
     let [tasks,setTasks,updateTask, deleteTask] = UseTasks();
@@ -41,7 +37,6 @@ const Todos = () =>{
             let response;
             response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/tasks`, {
                 method: "POST",
-                mode: 'no-cors',
                 headers: {
                   "Content-Type": "application/json",
                 },
@@ -62,7 +57,6 @@ const Todos = () =>{
                 let response;
                 response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/tasks/task-done/${todoId}`, {
                     method: "PATCH",
-                    mode: 'no-cors',
                     headers: {
                       "Content-Type": "application/json",
                    },
@@ -76,7 +70,6 @@ const Todos = () =>{
                 let response;
                 response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/tasks/task-undone/${todoId}`, {
                     method: "PATCH",
-                    mode: 'no-cors',
                     headers: {
                       "Content-Type": "application/json",
                    },
@@ -95,7 +88,6 @@ const Todos = () =>{
             let response;
             response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/tasks/${todoId}`,{
             method: 'DELETE',
-            mode: 'no-cors',
              headers: {
                "Content-Type": "application/json",
             }
