@@ -1,6 +1,4 @@
-'use client'
-import cookie from "js-cookie"
-import { useRouter } from 'next/navigation';
+
 
 const Header = () => {
   
