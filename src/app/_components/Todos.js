@@ -118,7 +118,7 @@ return(
                                     <button className='text-xl' onClick={(e) => handleStatus(e, todo._id, id, todo.todo )}>
                                         {todo.todo ? <FaRegCircle /> : <p className="checked"><FcOk /></p>}
                                     </button>
-                                    <Link href={`/task/${id}`} 
+                                    <Link 
                                     className={ `${ todo.todo ? '' : "line-through text-slate-400" } 
                                         hover:text-blue-500 
                                          ml-5 
